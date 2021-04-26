@@ -8,28 +8,37 @@ namespace ConverterService.Controllers
 {
     public class ConverterController : Controller
     {
-        [HttpPost]
-        public string Speed()
+
+        private IActionResult Magnitude(List<string> magnitudes, string action)
         {
-            return "Speed";
+            ViewBag.Magnitudes = magnitudes;
+            ViewBag.Action = action;
+            return View("Magnitude");
         }
 
-        [HttpPost]
-        public string Lenght()
+
+        // Get controller/speed
+        public IActionResult Speed()
         {
-            return "Lenght";
+            return Magnitude(new List<string> { "км/ч", "м/с", "мили/с" }, "Speed");
+        }        
+
+        // Get controller/lenght
+        public IActionResult Lenght()
+        {
+            return Magnitude(new List<string> { "км", "дюйм", "мили" }, "Lenght");
         }
 
-        [HttpPost]
-        public string Temperature()
+        // Get controller/temperature
+        public IActionResult Temperature()
         {
-            return "Temperature";
+            return Magnitude(new List<string> { "цельсий", "фаренгейт", "кельвин" }, "Temperature");
         }
 
-        [HttpPost]
-        public string Weight()
+        // Get controller/weight
+        public IActionResult Weight()
         {
-            return "Weight";
+            return Magnitude(new List<string> { "кг", "фунты", "пуд" }, "Weight");
         }
 
     }
