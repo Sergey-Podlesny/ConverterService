@@ -1,0 +1,19 @@
+﻿<form asp-controller="converter" asp-action="@ViewBag.Action" method="post">
+    <p>
+        <select  name="fromMagnitude">
+            <option value="" selected disabled hidden>из</option>
+            @foreach (var value in ViewBag.Magnitudes)
+            {
+                <option>@value</option>
+            }
+        </select>
+        <select name="toMagnitude">
+            <option value="" selected disabled hidden>в</option>
+            @foreach (var value in ViewBag.Magnitudes)
+            {
+                <option>@value</option>
+            }
+        </select>
+    </p>
+    <input type="number" name="value"/>
+</form>
