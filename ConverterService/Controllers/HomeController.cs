@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ConverterService.Controllers
+namespace MagnitudeConverter.Controllers
 {
     public class HomeController : Controller
     {

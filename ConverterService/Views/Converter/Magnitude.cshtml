@@ -1,19 +1,22 @@
-﻿<form asp-controller="converter" asp-action="@ViewBag.Action" method="post">
+﻿@model MagnitudeConverter.Models.RequestDto
+ 
+<form asp-controller="converter" asp-action="result" method="post">
     <p>
-        <select  name="fromMagnitude">
-            <option value="" selected disabled hidden>из</option>
+        <select asp-for="FromUnit">
+            <option value="" selected disabled hidden></option>
             @foreach (var value in ViewBag.Magnitudes)
             {
-                <option>@value</option>
+                <option>@value.NameOfUnit</option>
             }
         </select>
-        <select name="toMagnitude">
-            <option value="" selected disabled hidden>в</option>
+        <select asp-for="ToUnit">
+            <option value="" selected disabled hidden></option>
             @foreach (var value in ViewBag.Magnitudes)
             {
-                <option>@value</option>
+                <option>@value.NameOfUnit</option>
             }
         </select>
     </p>
-    <input type="number" name="value"/>
+    <input type="number" asp-for="Value" />
+
 </form>

@@ -3,43 +3,92 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MagnitudeConverter.Models.Magnitude;
+using MagnitudeConverter.Logic.Services;
+using MagnitudeConverter.Models;
 
-namespace ConverterService.Controllers
+namespace MagnitudeConverter.Controllers
 {
     public class ConverterController : Controller
     {
+        IService<RequestDto> converterService;
+        public ConverterController(IService<RequestDto> service)
+        {
+            converterService = service;
+        }
 
-        private IActionResult Magnitude(List<string> magnitudes, string action)
+        
+        private IActionResult Magnitude(List<Magnitude> magnitudes)
         {
             ViewBag.Magnitudes = magnitudes;
-            ViewBag.Action = action;
             return View("Magnitude");
         }
 
 
-        // Get controller/speed
+        [HttpPost]
+        public IActionResult Result(RequestDto requestDto)
+        {
+            if(ModelState.IsValid)
+            {
+                //converterService.DoService(requestDto);
+                ViewBag.RequestDto = requestDto;
+                return View();
+            }
+            else
+            {
+                return new BadRequestResult();
+            }
+        }
+
+
+        //--------------------Speed--------------------
+        [HttpGet]
         public IActionResult Speed()
         {
-            return Magnitude(new List<string> { "км/ч", "м/с", "мили/с" }, "Speed");
-        }        
+            return Magnitude(new MagnitudeCollection().GetCollectionByMagnitude("speed"));
+        }
 
-        // Get controller/lenght
+
+
+        //--------------------Lenght--------------------
+        [HttpGet]
         public IActionResult Lenght()
         {
-            return Magnitude(new List<string> { "км", "дюйм", "мили" }, "Lenght");
+            return Magnitude(new MagnitudeCollection().GetCollectionByMagnitude("lenght"));
         }
 
-        // Get controller/temperature
+
+
+        //--------------------Temperature--------------------
+        [HttpGet]
         public IActionResult Temperature()
         {
-            return Magnitude(new List<string> { "цельсий", "фаренгейт", "кельвин" }, "Temperature");
+            return Magnitude(new MagnitudeCollection().GetCollectionByMagnitude("temperature"));
         }
 
-        // Get controller/weight
+
+
+        //--------------------Weight--------------------
+        [HttpGet]
         public IActionResult Weight()
         {
-            return Magnitude(new List<string> { "кг", "фунты", "пуд" }, "Weight");
+            return Magnitude(new MagnitudeCollection().GetCollectionByMagnitude("weight"));
         }
-
     }
 }
+
+
+/*
+--Service--
+Magn fromMagn, toMagn;
+double value;
+
+double valueInSI = fromMagn.CovertToSI(value);
+double convertedValue = toMagn.CovertFromSI(valueInSI);
+ 
+
+return convertedValue;
+--Service--
+
+
+ */

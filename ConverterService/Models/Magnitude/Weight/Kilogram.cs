@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace MagnitudeConverter.Models.Magnitude.Weight
+{
+    public class Kilogram : Magnitude
+    {
+        public Kilogram() : base("weight", "kilogram") { }
+        public override void ConvertFromSI(int value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ConvertToSI(int value)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

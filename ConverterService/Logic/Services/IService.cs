@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConverterService.Logic.Services
+namespace MagnitudeConverter.Logic.Services
 {
-    interface IService<T, E>
+    public interface IService<T>
     {
-        public T DoService(E entity);
+        public void DoService(T entity);
     }
 }
