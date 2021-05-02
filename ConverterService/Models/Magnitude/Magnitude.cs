@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagnitudeConverter.Models.Magnitude
 {
-    public abstract class Magnitude: IConvert<int>, IValid
+    public abstract class Magnitude: IConvert<double>, IValid
     {
         public Magnitude(string nameOfMagnitude, string nameOfUnit)
         {
@@ -16,11 +16,8 @@ namespace MagnitudeConverter.Models.Magnitude
         }
         public string NameOfMagnitude { get; }
         public string NameOfUnit { get; }
-
-        public abstract int ConvertFromSI(int value);
-
-        public abstract int ConvertToSI(int value);
-
+        public abstract double ConvertFromSI(double value);
+        public abstract double ConvertToSI(double value);
         public abstract void IsValid();
     }
 }

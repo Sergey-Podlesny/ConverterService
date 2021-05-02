@@ -16,8 +16,8 @@ namespace MagnitudeConverter.Logic.Services
         {
             Magnitude fromMagnitude = GetMagnitude(requestDto.FromUnit);
             Magnitude toMagnitude = GetMagnitude(requestDto.ToUnit);
-            CheckValid(fromMagnitude);
-            CheckValid(toMagnitude);
+            //CheckValid(fromMagnitude);
+            //CheckValid(toMagnitude);
             Convert(fromMagnitude, toMagnitude, requestDto);
         }
 
@@ -31,10 +31,11 @@ namespace MagnitudeConverter.Logic.Services
             unit.IsValid();
         }
 
-        private void Convert(IConvert<int> fromUnit, IConvert<int> toUnit, RequestDto dto)
+        private void Convert(IConvert<double> fromUnit, IConvert<double> toUnit, RequestDto dto)
         {
-            int siValue = fromUnit.ConvertToSI(dto.EnteredValue);
-            dto.ResultValue = toUnit.ConvertFromSI(siValue);
+            double siValue = fromUnit.ConvertToSI(dto.EnteredValue);
+            double resValue = toUnit.ConvertFromSI(siValue);
+            dto.ResultValue = Math.Round(resValue, 3);
         }
     }
 }

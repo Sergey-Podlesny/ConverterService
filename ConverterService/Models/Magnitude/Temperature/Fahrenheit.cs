@@ -11,14 +11,14 @@ namespace MagnitudeConverter.Models.Magnitude.Temperature
     {
         public Fahrenheit() : base("temperature", "fahrenheit") { }
 
-        public override int ConvertFromSI(int value)
+        public override double ConvertFromSI(double value)
         {
-            return value;
+            return (value * 1.8) + 32;
         }
 
-        public override int ConvertToSI(int value)
+        public override double ConvertToSI(double value)
         {
-            return value;
+            return (value - 32) / 1.8;
         }
 
         public override void IsValid()

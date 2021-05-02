@@ -28,10 +28,11 @@ namespace MagnitudeConverter.Controllers
         [HttpPost]
         public IActionResult Result(RequestDto requestDto)
         {
-            if (ModelState.IsValid)
+            double value;
+            if (ModelState.IsValid && double.TryParse(requestDto.EnteredStringValue, out value))
             {
-                //converterService.DoService(requestDto);
-                
+                requestDto.EnteredValue = value;
+                converterService.DoService(requestDto);
                 
                 ViewBag.RequestDto = requestDto;
                 return View();
@@ -78,19 +79,3 @@ namespace MagnitudeConverter.Controllers
         }
     }
 }
-
-
-/*
---Service--
-Magn fromMagn, toMagn;
-double value;
-
-double valueInSI = fromMagn.CovertToSI(value);
-double convertedValue = toMagn.CovertFromSI(valueInSI);
- 
-
-return convertedValue;
---Service--
-
-
- */

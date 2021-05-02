@@ -11,12 +11,12 @@ namespace MagnitudeConverter.Models.Magnitude.Weight
     {
         public Kilogram() : base("weight", "kilogram") { }
 
-        public override int ConvertFromSI(int value)
+        public override double ConvertFromSI(double value)
         {
             return value;
         }
 
-        public override int ConvertToSI(int value)
+        public override double ConvertToSI(double value)
         {
             return value;
         }

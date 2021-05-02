@@ -11,14 +11,14 @@ namespace MagnitudeConverter.Models.Magnitude.Speed
     {
         public MilePerHour() : base("speed", "milePerHour") { }
 
-        public override int ConvertFromSI(int value)
+        public override double ConvertFromSI(double value)
         {
-            return value;
+            return value * 2.237;
         }
 
-        public override int ConvertToSI(int value)
+        public override double ConvertToSI(double value)
         {
-            return value;
+            return value / 2.237;
         }
 
         public override void IsValid()

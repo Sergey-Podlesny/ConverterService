@@ -11,14 +11,14 @@ namespace MagnitudeConverter.Models.Magnitude.Lenght
     {
         public Kilometer() : base("lenght", "kilometer") { }
 
-        public override int ConvertFromSI(int value)
+        public override double ConvertFromSI(double value)
         {
-            return value;
+            return value / 1000;
         }
 
-        public override int ConvertToSI(int value)
+        public override double ConvertToSI(double value)
         {
-            return value;
+            return value * 1000;
         }
 
         public override void IsValid()

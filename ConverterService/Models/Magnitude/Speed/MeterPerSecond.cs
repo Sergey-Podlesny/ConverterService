@@ -11,12 +11,12 @@ namespace MagnitudeConverter.Models.Magnitude.Speed
     {
         public MeterPerSecond() : base("speed", "meterPerSecond") { }
 
-        public override int ConvertFromSI(int value)
+        public override double ConvertFromSI(double value)
         {
             return value;
         }
 
-        public override int ConvertToSI(int value)
+        public override double ConvertToSI(double value)
         {
             return value;
         }

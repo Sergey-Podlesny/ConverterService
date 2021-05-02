@@ -11,14 +11,14 @@ namespace MagnitudeConverter.Models.Magnitude.Weight
     {
         public Pood() : base("weight", "pood") { }
 
-        public override int ConvertFromSI(int value)
+        public override double ConvertFromSI(double value)
         {
-            return value;
+            return value / 16.381;
         }
 
-        public override int ConvertToSI(int value)
+        public override double ConvertToSI(double value)
         {
-            return value;
+            return value * 16.381;
         }
 
         public override void IsValid()
