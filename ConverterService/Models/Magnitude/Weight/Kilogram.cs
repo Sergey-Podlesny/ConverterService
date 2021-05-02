@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MagnitudeConverter.Logic.Converter;
+using MagnitudeConverter.Logic.Validator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,12 +10,18 @@ namespace MagnitudeConverter.Models.Magnitude.Weight
     public class Kilogram : Magnitude
     {
         public Kilogram() : base("weight", "kilogram") { }
-        public override void ConvertFromSI(int value)
+
+        public override int ConvertFromSI(int value)
         {
-            throw new NotImplementedException();
+            return value;
         }
 
-        public override void ConvertToSI(int value)
+        public override int ConvertToSI(int value)
+        {
+            return value;
+        }
+
+        public override void IsValid()
         {
             throw new NotImplementedException();
         }

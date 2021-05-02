@@ -28,9 +28,11 @@ namespace MagnitudeConverter.Controllers
         [HttpPost]
         public IActionResult Result(RequestDto requestDto)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 //converterService.DoService(requestDto);
+                
+                
                 ViewBag.RequestDto = requestDto;
                 return View();
             }

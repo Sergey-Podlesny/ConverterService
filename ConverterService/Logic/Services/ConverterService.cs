@@ -5,30 +5,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MagnitudeConverter.Models;
+using MagnitudeConverter.Logic.Converter;
+using MagnitudeConverter.Logic.Validator;
 
 namespace MagnitudeConverter.Logic.Services
 {
     public class ConverterService : IService<RequestDto>
     {
-
-        Magnitude fromMagnitude;
-        Magnitude toMagnitude;
-
         public void DoService(RequestDto requestDto)
         {
-            SetMagnitude(requestDto.FromUnit, requestDto.ToUnit);
-
-            //todo ChekValid();
-
-            //fromMagnitude.ConvertToSI(requestDto.Value);
-            //toMagnitude.ConvertFromSI(requestDto.Value);
-            throw new NotImplementedException();
+            Magnitude fromMagnitude = GetMagnitude(requestDto.FromUnit);
+            Magnitude toMagnitude = GetMagnitude(requestDto.ToUnit);
+            CheckValid(fromMagnitude);
+            CheckValid(toMagnitude);
+            Convert(fromMagnitude, toMagnitude, requestDto);
         }
 
-        private void SetMagnitude(string fromUnit, string toUnit)
+        private Magnitude GetMagnitude(string unit)
         {
-            fromMagnitude = new MagnitudeCollection().GetMagnitudeByUnit(fromUnit);
-            toMagnitude = new MagnitudeCollection().GetMagnitudeByUnit(toUnit);
+            return new MagnitudeCollection().GetMagnitudeByUnit(unit);
+        }
+
+        private void CheckValid(IValid unit)
+        {
+            unit.IsValid();
+        }
+
+        private void Convert(IConvert<int> fromUnit, IConvert<int> toUnit, RequestDto dto)
+        {
+            int siValue = fromUnit.ConvertToSI(dto.EnteredValue);
+            dto.ResultValue = toUnit.ConvertFromSI(siValue);
         }
     }
 }

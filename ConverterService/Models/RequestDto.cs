@@ -15,7 +15,8 @@ namespace MagnitudeConverter.Models
         public string ToUnit { get; set; }
 
         [Required]
-        public int Value { get; set; }
+        [DataType(DataType.Currency)]
+        public int EnteredValue { get; set; }
 
         public int ResultValue { get; set; }
 
