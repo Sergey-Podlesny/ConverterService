@@ -1,8 +1,11 @@
-﻿using MagnitudeConverter.Logic.Converter;
+﻿using MagnitudeConverter.Exceptions;
+using MagnitudeConverter.Logic.Converter;
 using MagnitudeConverter.Logic.Validator;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace MagnitudeConverter.Models.Magnitude.Lenght
@@ -21,9 +24,12 @@ namespace MagnitudeConverter.Models.Magnitude.Lenght
             return value / 39.37;
         }
 
-        public override void IsValid()
+        public override void IsValid(double value)
         {
-            throw new NotImplementedException();
+            if(value < 0)
+            {
+                throw new ValidException(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

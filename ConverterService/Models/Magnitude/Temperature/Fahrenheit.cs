@@ -21,9 +21,6 @@ namespace MagnitudeConverter.Models.Magnitude.Temperature
             return (value - 32) / 1.8;
         }
 
-        public override void IsValid()
-        {
-            throw new NotImplementedException();
-        }
+        public override void IsValid(double value) { }
     }
 }

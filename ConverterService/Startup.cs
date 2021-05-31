@@ -27,7 +27,7 @@ namespace MagnitudeConverter
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
 
             app.UseRouting();

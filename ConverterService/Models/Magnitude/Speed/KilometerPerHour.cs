@@ -1,7 +1,9 @@
-﻿using MagnitudeConverter.Logic.Converter;
+﻿using MagnitudeConverter.Exceptions;
+using MagnitudeConverter.Logic.Converter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace MagnitudeConverter.Models.Magnitude.Speed
@@ -19,9 +21,12 @@ namespace MagnitudeConverter.Models.Magnitude.Speed
         {
             return value / 3.6;
         }
-        public override void IsValid()
+        public override void IsValid(double value)
         {
-            throw new NotImplementedException();
+            if (value < 0)
+            {
+                throw new ValidException(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

@@ -21,9 +21,6 @@ namespace MagnitudeConverter.Models.Magnitude.Temperature
             return value - 273.15;
         }
 
-        public override void IsValid()
-        {
-            throw new NotImplementedException();
-        }
+        public override void IsValid(double value) { }
     }
 }

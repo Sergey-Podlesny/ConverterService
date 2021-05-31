@@ -16,8 +16,7 @@ namespace MagnitudeConverter.Logic.Services
         {
             Magnitude fromMagnitude = GetMagnitude(requestDto.FromUnit);
             Magnitude toMagnitude = GetMagnitude(requestDto.ToUnit);
-            //CheckValid(fromMagnitude);
-            //CheckValid(toMagnitude);
+            CheckValid(fromMagnitude, requestDto.EnteredValue);
             Convert(fromMagnitude, toMagnitude, requestDto);
         }
 
@@ -26,9 +25,9 @@ namespace MagnitudeConverter.Logic.Services
             return new MagnitudeCollection().GetMagnitudeByUnit(unit);
         }
 
-        private void CheckValid(IValid unit)
+        private void CheckValid(IValid<double> unit, double value)
         {
-            unit.IsValid();
+            unit.IsValid(value);
         }
 
         private void Convert(IConvert<double> fromUnit, IConvert<double> toUnit, RequestDto dto)

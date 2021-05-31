@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace MagnitudeConverter.Logic.Validator
 {
-    interface IValid
+    interface IValid<T>
     {
-        void IsValid();
+        void IsValid(T value);
     }
 }
